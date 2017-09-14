@@ -1,0 +1,7 @@
+1c1,4
+< /home/h724j464/EECS678/project01/quash/test-cases/t4_builtin/sandbox
+---
+> sandbox
+> sandbox
+> hello
+> hello
