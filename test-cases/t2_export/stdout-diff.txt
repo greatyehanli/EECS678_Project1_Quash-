@@ -1,9 +1,9 @@
 3,10d2
-< /home/h724j464/EECS678/project01/quash/test-cases/t2_export/sandbox
-< /home/h724j464/EECS678/project01/quash/test-cases/t2_export/sandbox
-< /home/h724j464/EECS678/project01/quash/test-cases/t2_export/sandbox
 < dir1
 < dir2
 < dir3
 < lorem_ipsum.txt
 < valgrind_expected.txt
+< /home/h724j464/EECS678/project01/quash/test-cases/t2_export/sandbox
+< /home/h724j464/EECS678/project01/quash/test-cases/t2_export/sandbox
+< /home/h724j464/EECS678/project01/quash/test-cases/t2_export/sandbox

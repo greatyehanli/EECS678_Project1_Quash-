@@ -1,34 +1,15 @@
-==10879== Memcheck, a memory error detector
-==10879== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==10879== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==10879== Command: /home/h724j464/EECS678/project01/quash/quash
-==10879== 
+==12449== Memcheck, a memory error detector
+==12449== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==12449== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==12449== Command: /home/h724j464/EECS678/project01/quash/quash
+==12449== 
 IMPLEMENT ME: src/execute.c(line 82): check_jobs_bg_status()
-IMPLEMENT ME: src/execute.c(line 448): run_script()
-==10879== 
-==10879== HEAP SUMMARY:
-==10879==     in use at exit: 141 bytes in 2 blocks
-==10879==   total heap usage: 13 allocs, 11 frees, 1,069,855 bytes allocated
-==10879== 
-==10879== 40 bytes in 1 blocks are definitely lost in loss record 1 of 2
-==10879==    at 0x4C2DB8F: malloc (vg_replace_malloc.c:299)
-==10879==    by 0x4017DF: new_PIDDeque (execute.c:21)
-==10879==    by 0x4040C1: run_script (execute.c:439)
-==10879==    by 0x40146D: main (quash.c:132)
-==10879== 
-==10879== 101 bytes in 1 blocks are definitely lost in loss record 2 of 2
-==10879==    at 0x4C2DB8F: malloc (vg_replace_malloc.c:299)
-==10879==    by 0x4EC5489: strdup (strdup.c:42)
-==10879==    by 0x401391: get_command_string (quash.c:88)
-==10879==    by 0x4040A9: run_script (execute.c:437)
-==10879==    by 0x40146D: main (quash.c:132)
-==10879== 
-==10879== LEAK SUMMARY:
-==10879==    definitely lost: 141 bytes in 2 blocks
-==10879==    indirectly lost: 0 bytes in 0 blocks
-==10879==      possibly lost: 0 bytes in 0 blocks
-==10879==    still reachable: 0 bytes in 0 blocks
-==10879==         suppressed: 0 bytes in 0 blocks
-==10879== 
-==10879== For counts of detected and suppressed errors, rerun with: -v
-==10879== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==12449== 
+==12449== HEAP SUMMARY:
+==12449==     in use at exit: 0 bytes in 0 blocks
+==12449==   total heap usage: 13 allocs, 13 frees, 1,069,855 bytes allocated
+==12449== 
+==12449== All heap blocks were freed -- no leaks are possible
+==12449== 
+==12449== For counts of detected and suppressed errors, rerun with: -v
+==12449== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

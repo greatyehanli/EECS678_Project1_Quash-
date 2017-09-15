@@ -14,6 +14,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <sys/wait.h>
 #include "quash.h"
 
 
@@ -47,7 +48,6 @@ static JobDeque jobs;
 
 // Return a string containing the current working directory.
 char* get_current_directory(bool* should_free) {
-  // TODO: Get the current working directory. This will fix the prompt path.
   // HINT: This should be pretty simple
 
   // QUESTION: What does this do?
@@ -208,7 +208,6 @@ void run_kill(KillCommand cmd) {
 
 // Prints the current working directory to stdout
 void run_pwd() {
-  // TODO: Print the current working directory
   char cwd[2000];
   getcwd(cwd, sizeof(cwd));
   fprintf(stdout, "%s\n", cwd);
@@ -219,8 +218,19 @@ void run_pwd() {
 
 // Prints all background jobs currently in the job list to stdout
 void run_jobs() {
-  // TODO: Print background jobs
-  IMPLEMENT_ME();
+
+  // Note: does job need to be referenced here? Could i use size_t instead of int?
+  for(int x = 0; x < (int)length_JobDeque(&jobs); x++) {
+         
+    Job tempJob = pop_front_JobDeque(&jobs);
+
+    // TODO: put temp job above this line, use it instead of a million peeks 
+    print_job(tempJob.job_id, peek_front_PIDDeque(&tempJob.pid_list), tempJob.cmd);
+
+    // Keep correct order of queue while printing 
+    push_back_JobDeque(&jobs, tempJob);
+ 
+  } 
 
   // Flush the buffer before returning
   fflush(stdout);
@@ -343,8 +353,6 @@ void create_process(CommandHolder holder, Job* job) {
   //(void) r_in;  // Silence unused variable warning
   //(void) r_out; // Silence unused variable warning
   //(void) r_app; // Silence unused variable warning
-
-  // TODO: Setup pipes, redirects, and new process
   
   // fork process
   pid_t pid_1 = fork(); 
@@ -446,20 +454,29 @@ void run_script(CommandHolder* holders) {
 
   if (!(holders[0].flags & BACKGROUND)) {
     // Run foreground job
-    if(!is_empty_PIDDeque()) {
-      wait_pid(peek_front_PIDDeque(&job.pid_list), &status, 0);
+    if(!is_empty_PIDDeque(&job.pid_list)) {
+      waitpid(peek_front_PIDDeque(&job.pid_list), &status, 0);
     }
     
     // free memory
     free(job.cmd);
-    destroy_PIDDeque(&job.pid_list));
+    destroy_PIDDeque(&job.pid_list);
   }
   else {
     // A background job.
-    // TODO: Push the new job to the job queue
-    IMPLEMENT_ME();
 
-    // TODO: Once jobs are implemented, uncomment and fill the following line
-    // print_job_bg_start(job_id, pid, cmd);
+    // Set the job id for our new job
+    if(is_empty_JobDeque(&jobs)) {
+      job.job_id = 1;
+    }
+    else {
+      // check if need to pass as a reference
+      job.job_id = peek_back_JobDeque(&jobs).job_id + 1;    
+    }
+
+    // Push our job onto the job queue
+    push_back_JobDeque(&jobs, job);
+
+    print_job_bg_start(job.job_id, peek_front_PIDDeque(&job.pid_list), job.cmd);
   }
 }
