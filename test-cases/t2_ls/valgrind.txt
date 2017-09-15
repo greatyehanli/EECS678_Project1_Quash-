@@ -1,5 +1,5 @@
-==4344== Memcheck, a memory error detector
-==4344== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==4344== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==4344== Command: /home/h724j464/EECS678/project01/quash/quash
-==4344== 
+==8414== Memcheck, a memory error detector
+==8414== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==8414== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==8414== Command: /home/h724j464/EECS678/project01/quash/quash
+==8414== 

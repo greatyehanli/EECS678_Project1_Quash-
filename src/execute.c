@@ -13,8 +13,12 @@
 #include <unistd.h>
 #include "quash.h"
 
+
 IMPLEMENT_DEQUE_STRUCT(PIDDeque, pid_t);
 IMPLEMENT_DEQUE(PIDDeque, pid_t);
+
+// declare a global pipe
+int p1[2];
 
 typedef struct Job {
   int job_id;
@@ -330,6 +334,7 @@ void create_process(CommandHolder holder) {
   bool r_app = holder.flags & REDIRECT_APPEND; // This can only be true if r_out
                                                // is true
 
+
   // TODO: Remove warning silencers
   (void) p_in;  // Silence unused variable warning
   (void) p_out; // Silence unused variable warning
@@ -338,7 +343,9 @@ void create_process(CommandHolder holder) {
   (void) r_app; // Silence unused variable warning
 
   // TODO: Setup pipes, redirects, and new process
-  IMPLEMENT_ME();
+  pid_t pid_1;
+  
+  
   // gonna do the forks and the if pid == zero
   // create 1 pipe and 1 child, if need more child creates it 
 
