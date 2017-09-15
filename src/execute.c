@@ -11,6 +11,9 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include "quash.h"
 
 
@@ -347,14 +350,58 @@ void create_process(CommandHolder holder, Job* job) {
   pid_t pid_1 = fork(); 
 
   // push process onto job's pid list, **check that passing by reference works
-  push_back_PIDDeque(&job->pidlist, pid_1); 
+  // NOTE: Look into why this ampersand helps, C thing??
+  push_back_PIDDeque(&job->pid_list, pid_1); 
 
   // check if process is a child process
   if (pid_1 == 0) {
-    
+    if(p_in) {
+      // open pipe for reading
+      dup2(p1[0], STDIN_FILENO);
+
+      // close the pipe NOTE: does it make a difference to close outside of this if
+      close(p1[0]);
+    }
+    if(p_out) {
+      // open pipe for writing
+      dup2(p1[1], STDOUT_FILENO);
+
+      // close the pipe NOTE: does it make a difference to close outside of this if
+      close(p1[1]);
+    }
+    if(r_in) {
+      int fileDescriptor = open(holder.redirect_in, O_RDONLY, 0); // is mode 0 read only?
+      
+      // reading from a file
+      dup2(fileDescriptor, STDIN_FILENO);
+      close(fileDescriptor);
+
+    }
+    if(r_out) {
+      int fileDescriptor;
+ 
+      if(r_app) {
+        // NOTE: might not need O_CREAT 
+        fileDescriptor = open(holder.redirect_out, O_CREAT|O_WRONLY|O_APPEND, 0644); // pass mode as read&write, or write only?
+      }
+      else {
+        fileDescriptor = open(holder.redirect_out, O_CREAT|O_WRONLY|O_TRUNC, 0644); // pass mode as read&write, or write only?
+      }
+
+      // writing to a file and close the pipe
+      dup2(fileDescriptor, STDOUT_FILENO);
+      close(fileDescriptor);
+    }
+
+    child_run_command(holder.cmd); // This should be done in the child branch of a fork
+
   }
+  // parent process
   else {
     // close pipes 
+    close(p1[0]);
+    close(p1[1]);
+
     parent_run_command(holder.cmd); 
   }
   
@@ -368,8 +415,7 @@ void create_process(CommandHolder holder, Job* job) {
   // something with jobs and looping through the queue
 
   
- 
-  child_run_command(holder.cmd); // This should be done in the child branch of a fork
+
 }
 
 // Run a list of commands
@@ -387,9 +433,14 @@ void run_script(CommandHolder* holders) {
 
   CommandType type;
 
+  Job job;
+  job.cmd = get_command_string();
+  // set initial size of PIE Deque at 10
+  job.pid_list = new_PIDDeque(10); 
+
   // Run all commands in the `holder` array
   for (int i = 0; (type = get_command_holder_type(holders[i])) != EOC; ++i)
-    create_process(holders[i]);
+    create_process(holders[i], &job);
 
   if (!(holders[0].flags & BACKGROUND)) {
     // Not a background Job
