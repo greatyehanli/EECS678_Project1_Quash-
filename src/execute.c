@@ -433,19 +433,26 @@ void run_script(CommandHolder* holders) {
 
   CommandType type;
 
+  // Initialize a job
   Job job;
   job.cmd = get_command_string();
-  // set initial size of PIE Deque at 10
-  job.pid_list = new_PIDDeque(10); 
+  job.pid_list = new_PIDDeque(10); // set initial size of PIE Deque at 10 
+
+  int status = 0;
 
   // Run all commands in the `holder` array
   for (int i = 0; (type = get_command_holder_type(holders[i])) != EOC; ++i)
     create_process(holders[i], &job);
 
   if (!(holders[0].flags & BACKGROUND)) {
-    // Not a background Job
-    // TODO: Wait for all processes under the job to complete
-    IMPLEMENT_ME();
+    // Run foreground job
+    if(!is_empty_PIDDeque()) {
+      wait_pid(peek_front_PIDDeque(&job.pid_list), &status, 0);
+    }
+    
+    // free memory
+    free(job.cmd);
+    destroy_PIDDeque(&job.pid_list));
   }
   else {
     // A background job.

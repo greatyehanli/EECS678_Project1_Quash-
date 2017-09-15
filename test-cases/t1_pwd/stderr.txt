@@ -1,17 +1,62 @@
-==8309== Memcheck, a memory error detector
-==8309== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==8309== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==8309== Command: /home/h724j464/EECS678/project01/quash/quash
-==8309== 
-IMPLEMENT ME: src/execute.c(line 75): check_jobs_bg_status()
-IMPLEMENT ME: src/execute.c(line 341): create_process()
-IMPLEMENT ME: src/execute.c(line 379): run_script()
-==8309== 
-==8309== HEAP SUMMARY:
-==8309==     in use at exit: 0 bytes in 0 blocks
-==8309==   total heap usage: 10 allocs, 10 frees, 2,116,226 bytes allocated
-==8309== 
-==8309== All heap blocks were freed -- no leaks are possible
-==8309== 
-==8309== For counts of detected and suppressed errors, rerun with: -v
-==8309== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==10739== Memcheck, a memory error detector
+==10739== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==10739== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==10739== Command: /home/h724j464/EECS678/project01/quash/quash
+==10739== 
+IMPLEMENT ME: src/execute.c(line 82): check_jobs_bg_status()
+IMPLEMENT ME: src/execute.c(line 448): run_script()
+IMPLEMENT ME: src/execute.c(line 448): run_script()
+==10739== 
+==10739== HEAP SUMMARY:
+==10739==     in use at exit: 45 bytes in 2 blocks
+==10739==   total heap usage: 11 allocs, 9 frees, 1,067,695 bytes allocated
+==10739== 
+==10739== 5 bytes in 1 blocks are definitely lost in loss record 1 of 2
+==10739==    at 0x4C2DB8F: malloc (vg_replace_malloc.c:299)
+==10739==    by 0x4EC5489: strdup (strdup.c:42)
+==10739==    by 0x401391: get_command_string (quash.c:88)
+==10739==    by 0x4040A9: run_script (execute.c:437)
+==10739==    by 0x40146D: main (quash.c:132)
+==10739== 
+==10739== 40 bytes in 1 blocks are definitely lost in loss record 2 of 2
+==10739==    at 0x4C2DB8F: malloc (vg_replace_malloc.c:299)
+==10739==    by 0x4017DF: new_PIDDeque (execute.c:21)
+==10739==    by 0x4040C1: run_script (execute.c:439)
+==10739==    by 0x40146D: main (quash.c:132)
+==10739== 
+==10739== LEAK SUMMARY:
+==10739==    definitely lost: 45 bytes in 2 blocks
+==10739==    indirectly lost: 0 bytes in 0 blocks
+==10739==      possibly lost: 0 bytes in 0 blocks
+==10739==    still reachable: 0 bytes in 0 blocks
+==10739==         suppressed: 0 bytes in 0 blocks
+==10739== 
+==10739== For counts of detected and suppressed errors, rerun with: -v
+==10739== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==10959== 
+==10959== HEAP SUMMARY:
+==10959==     in use at exit: 45 bytes in 2 blocks
+==10959==   total heap usage: 12 allocs, 10 frees, 2,116,271 bytes allocated
+==10959== 
+==10959== 5 bytes in 1 blocks are definitely lost in loss record 1 of 2
+==10959==    at 0x4C2DB8F: malloc (vg_replace_malloc.c:299)
+==10959==    by 0x4EC5489: strdup (strdup.c:42)
+==10959==    by 0x401391: get_command_string (quash.c:88)
+==10959==    by 0x4040A9: run_script (execute.c:437)
+==10959==    by 0x40146D: main (quash.c:132)
+==10959== 
+==10959== 40 bytes in 1 blocks are definitely lost in loss record 2 of 2
+==10959==    at 0x4C2DB8F: malloc (vg_replace_malloc.c:299)
+==10959==    by 0x4017DF: new_PIDDeque (execute.c:21)
+==10959==    by 0x4040C1: run_script (execute.c:439)
+==10959==    by 0x40146D: main (quash.c:132)
+==10959== 
+==10959== LEAK SUMMARY:
+==10959==    definitely lost: 45 bytes in 2 blocks
+==10959==    indirectly lost: 0 bytes in 0 blocks
+==10959==      possibly lost: 0 bytes in 0 blocks
+==10959==    still reachable: 0 bytes in 0 blocks
+==10959==         suppressed: 0 bytes in 0 blocks
+==10959== 
+==10959== For counts of detected and suppressed errors, rerun with: -v
+==10959== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
