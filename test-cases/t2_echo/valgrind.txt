@@ -1,23 +1,23 @@
-==12393== Memcheck, a memory error detector
-==12393== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==12393== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==12393== Command: /home/h724j464/EECS678/project01/quash/quash
-==12393== 
-==12525== 
-==12525== HEAP SUMMARY:
-==12525==     in use at exit: 0 bytes in 0 blocks
-==12525==   total heap usage: 10 allocs, 10 frees, 2,115,021 bytes allocated
-==12525== 
-==12525== All heap blocks were freed -- no leaks are possible
-==12525== 
-==12525== For counts of detected and suppressed errors, rerun with: -v
-==12525== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==12393== 
-==12393== HEAP SUMMARY:
-==12393==     in use at exit: 0 bytes in 0 blocks
-==12393==   total heap usage: 9 allocs, 9 frees, 1,066,445 bytes allocated
-==12393== 
-==12393== All heap blocks were freed -- no leaks are possible
-==12393== 
-==12393== For counts of detected and suppressed errors, rerun with: -v
-==12393== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18367== Memcheck, a memory error detector
+==18367== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==18367== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==18367== Command: /home/h724j464/EECS678/project01/quash/quash
+==18367== 
+==18480== 
+==18480== HEAP SUMMARY:
+==18480==     in use at exit: 0 bytes in 0 blocks
+==18480==   total heap usage: 10 allocs, 10 frees, 2,115,021 bytes allocated
+==18480== 
+==18480== All heap blocks were freed -- no leaks are possible
+==18480== 
+==18480== For counts of detected and suppressed errors, rerun with: -v
+==18480== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18367== 
+==18367== HEAP SUMMARY:
+==18367==     in use at exit: 0 bytes in 0 blocks
+==18367==   total heap usage: 9 allocs, 9 frees, 1,066,445 bytes allocated
+==18367== 
+==18367== All heap blocks were freed -- no leaks are possible
+==18367== 
+==18367== For counts of detected and suppressed errors, rerun with: -v
+==18367== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

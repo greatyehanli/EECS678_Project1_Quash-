@@ -1,30 +1,30 @@
-==12454== Memcheck, a memory error detector
-==12454== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==12454== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==12454== Command: /home/h724j464/EECS678/project01/quash/quash
-==12454== 
-==12454== 
-==12454== Process terminating with default action of signal 6 (SIGABRT)
-==12454==    at 0x4E6F428: raise (raise.c:54)
-==12454==    by 0x4E71029: abort (abort.c:89)
-==12454==    by 0x4E67BD6: __assert_fail_base (assert.c:92)
-==12454==    by 0x4E67C81: __assert_fail (assert.c:101)
-==12454==    by 0x4029BF: is_empty_JobDeque (execute.c:34)
-==12454==    by 0x40431D: run_script (execute.c:469)
-==12454==    by 0x4014BD: main (quash.c:132)
-==12454== 
-==12454== HEAP SUMMARY:
-==12454==     in use at exit: 17,794 bytes in 7 blocks
-==12454==   total heap usage: 13 allocs, 6 frees, 1,067,897 bytes allocated
-==12454== 
-==12454== LEAK SUMMARY:
-==12454==    definitely lost: 0 bytes in 0 blocks
-==12454==    indirectly lost: 0 bytes in 0 blocks
-==12454==      possibly lost: 0 bytes in 0 blocks
-==12454==    still reachable: 17,794 bytes in 7 blocks
-==12454==         suppressed: 0 bytes in 0 blocks
-==12454== Reachable blocks (those to which a pointer was found) are not shown.
-==12454== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==12454== 
-==12454== For counts of detected and suppressed errors, rerun with: -v
-==12454== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18413== Memcheck, a memory error detector
+==18413== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==18413== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==18413== Command: /home/h724j464/EECS678/project01/quash/quash
+==18413== 
+==18413== 
+==18413== Process terminating with default action of signal 6 (SIGABRT)
+==18413==    at 0x4E6F428: raise (raise.c:54)
+==18413==    by 0x4E71029: abort (abort.c:89)
+==18413==    by 0x4E67BD6: __assert_fail_base (assert.c:92)
+==18413==    by 0x4E67C81: __assert_fail (assert.c:101)
+==18413==    by 0x4029BF: is_empty_JobDeque (execute.c:34)
+==18413==    by 0x4042CD: run_script (execute.c:468)
+==18413==    by 0x4014BD: main (quash.c:132)
+==18413== 
+==18413== HEAP SUMMARY:
+==18413==     in use at exit: 17,794 bytes in 7 blocks
+==18413==   total heap usage: 13 allocs, 6 frees, 1,067,897 bytes allocated
+==18413== 
+==18413== LEAK SUMMARY:
+==18413==    definitely lost: 0 bytes in 0 blocks
+==18413==    indirectly lost: 0 bytes in 0 blocks
+==18413==      possibly lost: 0 bytes in 0 blocks
+==18413==    still reachable: 17,794 bytes in 7 blocks
+==18413==         suppressed: 0 bytes in 0 blocks
+==18413== Reachable blocks (those to which a pointer was found) are not shown.
+==18413== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==18413== 
+==18413== For counts of detected and suppressed errors, rerun with: -v
+==18413== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

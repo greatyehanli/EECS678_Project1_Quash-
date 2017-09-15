@@ -50,11 +50,12 @@ static JobDeque jobs;
 char* get_current_directory(bool* should_free) {
   // HINT: This should be pretty simple
 
-  // QUESTION: What does this do?
   // Change this to true if necessary
-  *should_free = true;
 
   char *cwd = getcwd(NULL, 0);
+
+  // QUESTION: What does this do?
+  *should_free = true;  
 
   // WARNING: free() needs to be used on cwd when done? 
   return cwd;
@@ -63,13 +64,13 @@ char* get_current_directory(bool* should_free) {
 
 // Returns the value of an environment riable env_var
 const char* lookup_env(const char* env_var) {
-  // TODO: Lookup environment variables. This is required for parser to be able
+  // Lookup environment variables. This is required for parser to be able
   // to interpret variables from the command line and display the prompt
   // correctly
   // HINT: This should be pretty simple
 
-  // TODO: Remove warning silencers
-  (void) env_var; // Silence unused variable warning
+  // Remove warning silencers
+  //(void) env_var; // Silence unused variable warning
 
   return getenv(env_var);
 }
@@ -79,7 +80,7 @@ void check_jobs_bg_status() {
   // TODO: Check on the statuses of all processes belonging to all background
   // jobs. This function should remove jobs from the jobs queue once all
   // processes belonging to a job have completed.
-  IMPLEMENT_ME();
+  //IMPLEMENT_ME();
 
   // TODO: Once jobs are implemented, uncomment and fill the following line
   // print_job_bg_complete(job_id, pid, cmd);
@@ -169,25 +170,24 @@ void run_export(ExportCommand cmd) {
 void run_cd(CDCommand cmd) {
   // Get the directory name
   const char* dir = cmd.dir;
+  char* fulldir = realpath(dir, NULL);
 
   // Check if the directory is valid
-  if (dir == NULL) {
+  if (fulldir == NULL) {
     perror("ERROR: Failed to resolve path");
     return;
   }
 
-  // TODO: Change directory
-  if(chdir(dir) == -1){
-    perror("ERROR: Failed to change the dir");
-  }
+  // Change directory, perhaps try without an error?
+  chdir(fulldir);
 
-  // TODO: Update the PWD environment variable to be the new current working
-  // directory and optionally update OLD_PWD environment variable to be the old
-  // working directory.
-  // Question: could I use my run_export function to do this?  
-  bool should_free = true;
-  char *PWD = get_current_directory(&should_free);
-  setenv(PWD, cmd.dir, 1);
+  //bool should_free = true;
+  //char *PWD = get_current_directory(&should_free);
+  setenv("PWD", fulldir, 1);
+
+  // free memory
+  free(fulldir);
+  //free(PWD);
 
   return;
 }

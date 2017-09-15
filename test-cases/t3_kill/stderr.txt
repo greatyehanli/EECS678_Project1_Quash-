@@ -1,32 +1,31 @@
-==12468== Memcheck, a memory error detector
-==12468== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==12468== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==12468== Command: /home/h724j464/EECS678/project01/quash/quash
-==12468== 
-IMPLEMENT ME: src/execute.c(line 82): check_jobs_bg_status()
+==18450== Memcheck, a memory error detector
+==18450== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==18450== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==18450== Command: /home/h724j464/EECS678/project01/quash/quash
+==18450== 
 quash: src/execute.c:34: is_empty_JobDeque: Assertion `deq->data != NULL' failed.
-==12468== 
-==12468== Process terminating with default action of signal 6 (SIGABRT)
-==12468==    at 0x4E6F428: raise (raise.c:54)
-==12468==    by 0x4E71029: abort (abort.c:89)
-==12468==    by 0x4E67BD6: __assert_fail_base (assert.c:92)
-==12468==    by 0x4E67C81: __assert_fail (assert.c:101)
-==12468==    by 0x4029BF: is_empty_JobDeque (execute.c:34)
-==12468==    by 0x40431D: run_script (execute.c:469)
-==12468==    by 0x4014BD: main (quash.c:132)
-==12468== 
-==12468== HEAP SUMMARY:
-==12468==     in use at exit: 17,801 bytes in 7 blocks
-==12468==   total heap usage: 13 allocs, 6 frees, 1,067,904 bytes allocated
-==12468== 
-==12468== LEAK SUMMARY:
-==12468==    definitely lost: 0 bytes in 0 blocks
-==12468==    indirectly lost: 0 bytes in 0 blocks
-==12468==      possibly lost: 0 bytes in 0 blocks
-==12468==    still reachable: 17,801 bytes in 7 blocks
-==12468==         suppressed: 0 bytes in 0 blocks
-==12468== Reachable blocks (those to which a pointer was found) are not shown.
-==12468== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==12468== 
-==12468== For counts of detected and suppressed errors, rerun with: -v
-==12468== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18450== 
+==18450== Process terminating with default action of signal 6 (SIGABRT)
+==18450==    at 0x4E6F428: raise (raise.c:54)
+==18450==    by 0x4E71029: abort (abort.c:89)
+==18450==    by 0x4E67BD6: __assert_fail_base (assert.c:92)
+==18450==    by 0x4E67C81: __assert_fail (assert.c:101)
+==18450==    by 0x4029BF: is_empty_JobDeque (execute.c:34)
+==18450==    by 0x4042CD: run_script (execute.c:468)
+==18450==    by 0x4014BD: main (quash.c:132)
+==18450== 
+==18450== HEAP SUMMARY:
+==18450==     in use at exit: 17,801 bytes in 7 blocks
+==18450==   total heap usage: 13 allocs, 6 frees, 1,067,904 bytes allocated
+==18450== 
+==18450== LEAK SUMMARY:
+==18450==    definitely lost: 0 bytes in 0 blocks
+==18450==    indirectly lost: 0 bytes in 0 blocks
+==18450==      possibly lost: 0 bytes in 0 blocks
+==18450==    still reachable: 17,801 bytes in 7 blocks
+==18450==         suppressed: 0 bytes in 0 blocks
+==18450== Reachable blocks (those to which a pointer was found) are not shown.
+==18450== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==18450== 
+==18450== For counts of detected and suppressed errors, rerun with: -v
+==18450== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
