@@ -325,7 +325,7 @@ void parent_run_command(Command cmd) {
  *
  * @sa Command CommandHolder
  */
-void create_process(CommandHolder holder) {
+void create_process(CommandHolder holder, Job* job) {
   // Read the flags field from the parser
   bool p_in  = holder.flags & PIPE_IN;
   bool p_out = holder.flags & PIPE_OUT;
@@ -334,16 +334,29 @@ void create_process(CommandHolder holder) {
   bool r_app = holder.flags & REDIRECT_APPEND; // This can only be true if r_out
                                                // is true
 
-
   // TODO: Remove warning silencers
-  (void) p_in;  // Silence unused variable warning
-  (void) p_out; // Silence unused variable warning
-  (void) r_in;  // Silence unused variable warning
-  (void) r_out; // Silence unused variable warning
-  (void) r_app; // Silence unused variable warning
+  //(void) p_in;  // Silence unused variable warning
+  //(void) p_out; // Silence unused variable warning
+  //(void) r_in;  // Silence unused variable warning
+  //(void) r_out; // Silence unused variable warning
+  //(void) r_app; // Silence unused variable warning
 
   // TODO: Setup pipes, redirects, and new process
-  pid_t pid_1;
+  
+  // fork process
+  pid_t pid_1 = fork(); 
+
+  // push process onto job's pid list, **check that passing by reference works
+  push_back_PIDDeque(&job->pidlist, pid_1); 
+
+  // check if process is a child process
+  if (pid_1 == 0) {
+    
+  }
+  else {
+    // close pipes 
+    parent_run_command(holder.cmd); 
+  }
   
   
   // gonna do the forks and the if pid == zero
@@ -354,10 +367,8 @@ void create_process(CommandHolder holder) {
   // child you push job onto pid queue
   // something with jobs and looping through the queue
 
-  // parent is pretty simple, you close pipes and run parent command 
   
-  parent_run_command(holder.cmd); // This should be done in the parent branch of
-                                  // a fork
+ 
   child_run_command(holder.cmd); // This should be done in the child branch of a fork
 }
 
