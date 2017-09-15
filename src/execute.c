@@ -28,12 +28,14 @@ typedef struct Job {
   int job_id;
   char* cmd; 
   PIDDeque pid_list;
+  bool isComplete;
 } Job;
 
 IMPLEMENT_DEQUE_STRUCT(JobDeque, Job);
 IMPLEMENT_DEQUE(JobDeque, Job);
 
 static JobDeque jobs;
+bool isJobDequeInit = false;
 
 // Remove this and all expansion calls to it
 /**
@@ -77,13 +79,50 @@ const char* lookup_env(const char* env_var) {
 
 // Check the status of background jobs
 void check_jobs_bg_status() {
-  // TODO: Check on the statuses of all processes belonging to all background
+  // Check on the statuses of all processes belonging to all background
   // jobs. This function should remove jobs from the jobs queue once all
   // processes belonging to a job have completed.
-  //IMPLEMENT_ME();
 
-  // TODO: Once jobs are implemented, uncomment and fill the following line
-  // print_job_bg_complete(job_id, pid, cmd);
+  for(int j = 0; j < (int)length_JobDeque(&jobs); j++) {
+    
+    // pop a job
+    Job tempJob = pop_front_JobDeque(&jobs);
+    
+    // Assume job is complete    
+    tempJob.isComplete = true;
+
+    // Check the processes of the job to see if they're complete
+    for(int p = 0; p < (int)length_PIDDeque(&tempJob.pid_list); p++) {
+    
+      int status = 0;    
+
+      // check if process is complete
+      // NOTE: check if there's a simpler way to do this
+      
+      // pop first process off of the temp job's process queue
+      pid_t tempProcess = pop_front_PIDDeque(&tempJob.pid_list);
+
+      if(!(waitpid(tempProcess,&status,WNOHANG) != 0 && (WIFEXITED(status) 
+        || WIFSIGNALED(status)))) {
+
+        tempJob.isComplete = false;
+      }    
+    
+      // push process back to end of process queue
+      push_back_PIDDeque(&tempJob.pid_list, tempProcess);
+    }
+
+    if(!(tempJob.isComplete)) {
+      push_back_JobDeque(&jobs, tempJob);
+    }
+    else {
+      // print that job is complete
+      print_job_bg_complete(tempJob.job_id, peek_front_PIDDeque(&tempJob.pid_list), tempJob.cmd); 
+      
+      // destroy PID list associated with specific job      
+      destroy_PIDDeque(&tempJob.pid_list);
+    }
+  }
 }
 
 // Prints the job id number, the process id of the first process belonging to
@@ -197,12 +236,15 @@ void run_kill(KillCommand cmd) {
   int signal = cmd.sig;
   int job_id = cmd.job;
 
-  // TODO: Remove warning silencers
-  (void) signal; // Silence unused variable warning
-  (void) job_id; // Silence unused variable warning
+  // Remove warning silencers
+  //(void) signal; // Silence unused variable warning
+  //(void) job_id; // Silence unused variable warning
 
-  // TODO: Kill all processes associated with a background job
-  IMPLEMENT_ME();
+  // Note: currently killing first process of first job, do I need to use job associated with job_id?
+  // Kill all processes associated with a background job
+  Job jobToKill = peek_front_JobDeque(&jobs);
+  pid_t processToKill = peek_front_PIDDeque(&jobToKill.pid_list);
+  kill(processToKill, signal);
 }
 
 
@@ -402,7 +444,7 @@ void create_process(CommandHolder holder, Job* job) {
     }
 
     child_run_command(holder.cmd); // This should be done in the child branch of a fork
-
+    exit(0);
   }
   // parent process
   else {
@@ -411,18 +453,9 @@ void create_process(CommandHolder holder, Job* job) {
     close(p1[1]);
 
     parent_run_command(holder.cmd); 
+
+    // why not exit?
   }
-  
-  
-  // gonna do the forks and the if pid == zero
-  // create 1 pipe and 1 child, if need more child creates it 
-
-  // if/else checking if child/parent.
-
-  // child you push job onto pid queue
-  // something with jobs and looping through the queue
-
-  
 
 }
 
@@ -430,6 +463,12 @@ void create_process(CommandHolder holder, Job* job) {
 void run_script(CommandHolder* holders) {
   if (holders == NULL)
     return;
+
+  // initialize jobs queue
+  if(!isJobDequeInit) {
+    jobs = new_JobDeque(10); // set initial size of Job Deque to 10  
+    isJobDequeInit = true;
+  }
 
   check_jobs_bg_status();
 
@@ -441,7 +480,6 @@ void run_script(CommandHolder* holders) {
 
   CommandType type;
 
-  // Initialize a job
   Job job;
   job.cmd = get_command_string();
   job.pid_list = new_PIDDeque(10); // set initial size of PIE Deque at 10 

@@ -1,31 +1,54 @@
-==18450== Memcheck, a memory error detector
-==18450== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==18450== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==18450== Command: /home/h724j464/EECS678/project01/quash/quash
-==18450== 
-quash: src/execute.c:34: is_empty_JobDeque: Assertion `deq->data != NULL' failed.
-==18450== 
-==18450== Process terminating with default action of signal 6 (SIGABRT)
-==18450==    at 0x4E6F428: raise (raise.c:54)
-==18450==    by 0x4E71029: abort (abort.c:89)
-==18450==    by 0x4E67BD6: __assert_fail_base (assert.c:92)
-==18450==    by 0x4E67C81: __assert_fail (assert.c:101)
-==18450==    by 0x4029BF: is_empty_JobDeque (execute.c:34)
-==18450==    by 0x4042CD: run_script (execute.c:468)
-==18450==    by 0x4014BD: main (quash.c:132)
-==18450== 
-==18450== HEAP SUMMARY:
-==18450==     in use at exit: 17,801 bytes in 7 blocks
-==18450==   total heap usage: 13 allocs, 6 frees, 1,067,904 bytes allocated
-==18450== 
-==18450== LEAK SUMMARY:
-==18450==    definitely lost: 0 bytes in 0 blocks
-==18450==    indirectly lost: 0 bytes in 0 blocks
-==18450==      possibly lost: 0 bytes in 0 blocks
-==18450==    still reachable: 17,801 bytes in 7 blocks
-==18450==         suppressed: 0 bytes in 0 blocks
-==18450== Reachable blocks (those to which a pointer was found) are not shown.
-==18450== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==18450== 
-==18450== For counts of detected and suppressed errors, rerun with: -v
-==18450== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==29700== Memcheck, a memory error detector
+==29700== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==29700== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==29700== Command: /home/h724j464/EECS678/project01/quash/quash
+==29700== 
+==29831== 
+==29831== HEAP SUMMARY:
+==29831==     in use at exit: 761 bytes in 5 blocks
+==29831==   total heap usage: 22 allocs, 17 frees, 2,120,859 bytes allocated
+==29831== 
+==29831== LEAK SUMMARY:
+==29831==    definitely lost: 0 bytes in 0 blocks
+==29831==    indirectly lost: 0 bytes in 0 blocks
+==29831==      possibly lost: 0 bytes in 0 blocks
+==29831==    still reachable: 761 bytes in 5 blocks
+==29831==         suppressed: 0 bytes in 0 blocks
+==29831== Reachable blocks (those to which a pointer was found) are not shown.
+==29831== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==29831== 
+==29831== For counts of detected and suppressed errors, rerun with: -v
+==29831== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==29868== 
+==29868== HEAP SUMMARY:
+==29868==     in use at exit: 746 bytes in 4 blocks
+==29868==   total heap usage: 31 allocs, 27 frees, 2,124,806 bytes allocated
+==29868== 
+==29868== LEAK SUMMARY:
+==29868==    definitely lost: 0 bytes in 0 blocks
+==29868==    indirectly lost: 0 bytes in 0 blocks
+==29868==      possibly lost: 0 bytes in 0 blocks
+==29868==    still reachable: 746 bytes in 4 blocks
+==29868==         suppressed: 0 bytes in 0 blocks
+==29868== Reachable blocks (those to which a pointer was found) are not shown.
+==29868== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==29868== 
+==29868== For counts of detected and suppressed errors, rerun with: -v
+==29868== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+input in flex scanner failed
+==29700== 
+==29700== HEAP SUMMARY:
+==29700==     in use at exit: 671 bytes in 2 blocks
+==29700==   total heap usage: 37 allocs, 35 frees, 2,128,598 bytes allocated
+==29700== 
+==29700== LEAK SUMMARY:
+==29700==    definitely lost: 0 bytes in 0 blocks
+==29700==    indirectly lost: 0 bytes in 0 blocks
+==29700==      possibly lost: 0 bytes in 0 blocks
+==29700==    still reachable: 671 bytes in 2 blocks
+==29700==         suppressed: 0 bytes in 0 blocks
+==29700== Reachable blocks (those to which a pointer was found) are not shown.
+==29700== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==29700== 
+==29700== For counts of detected and suppressed errors, rerun with: -v
+==29700== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

@@ -1,3 +1,2 @@
 /home/h724j464/EECS678/project01/quash/test-cases/t4_builtin/sandbox
 hello\\n
-hello\\n
