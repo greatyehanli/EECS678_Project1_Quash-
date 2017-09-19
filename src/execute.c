@@ -97,13 +97,13 @@ void check_jobs_bg_status() {
       int status = 0;    
 
       // check if process is complete
-      // NOTE: check if there's a simpler way to do this
       
       // pop first process off of the temp job's process queue
       pid_t tempProcess = pop_front_PIDDeque(&tempJob.pid_list);
 
-      if(!(waitpid(tempProcess,&status,WNOHANG) != 0 && (WIFEXITED(status) 
-        || WIFSIGNALED(status)))) {
+      //  if(!(waitpid(tempProcess,&status,WNOHANG) != 0 && (WIFEXITED(status) 
+      //  || WIFSIGNALED(status))))
+      if(waitpid(tempProcess,&status,WNOHANG) == 0) {
 
         tempJob.isComplete = false;
       }    
@@ -156,11 +156,10 @@ void run_generic(GenericCommand cmd) {
   char* exec = cmd.args[0];
   char** args = cmd.args;
 
-  // TODO: Remove warning silencers
   //(void) exec; // Silence unused variable warning
   //(void) args; // Silence unused variable warning
 
-  // TODO: Implement run generic
+  // Implement run generic
   execvp(exec, args);
 
   perror("ERROR: Failed to execute program");
@@ -172,10 +171,10 @@ void run_echo(EchoCommand cmd) {
   // string is always NULL) list of strings.
   char** str = cmd.args;
 
-  // TODO: Remove warning silencers
+  // Remove warning silencers
   // (void) str; // Silence unused variable warning
 
-  // TODO: Implement echo
+  // Implement echo
   if(*str != NULL) {
     printf("%s", *str);
     str++;
@@ -197,7 +196,7 @@ void run_export(ExportCommand cmd) {
   const char* env_var = cmd.env_var;
   const char* val = cmd.val;
 
-  // TODO: Remove warning silencers
+  // Remove warning silencers
   //(void) env_var; // Silence unused variable warning
   //(void) val;     // Silence unused variable warning
 
@@ -265,8 +264,7 @@ void run_jobs() {
   for(int x = 0; x < (int)length_JobDeque(&jobs); x++) {
          
     Job tempJob = pop_front_JobDeque(&jobs);
-
-    // TODO: put temp job above this line, use it instead of a million peeks 
+ 
     print_job(tempJob.job_id, peek_front_PIDDeque(&tempJob.pid_list), tempJob.cmd);
 
     // Keep correct order of queue while printing 
