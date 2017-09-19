@@ -1,21 +1,21 @@
-==15090== Memcheck, a memory error detector
-==15090== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==15090== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==15090== Command: /home/h724j464/EECS678/project01/quash/quash
-==15090== 
-==15090== 
-==15090== HEAP SUMMARY:
-==15090==     in use at exit: 640 bytes in 1 blocks
-==15090==   total heap usage: 10 allocs, 9 frees, 1,067,070 bytes allocated
-==15090== 
-==15090== LEAK SUMMARY:
-==15090==    definitely lost: 0 bytes in 0 blocks
-==15090==    indirectly lost: 0 bytes in 0 blocks
-==15090==      possibly lost: 0 bytes in 0 blocks
-==15090==    still reachable: 640 bytes in 1 blocks
-==15090==         suppressed: 0 bytes in 0 blocks
-==15090== Reachable blocks (those to which a pointer was found) are not shown.
-==15090== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==15090== 
-==15090== For counts of detected and suppressed errors, rerun with: -v
-==15090== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==51630== Memcheck, a memory error detector
+==51630== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==51630== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
+==51630== Command: /home/h724j464/EECS678/project01/quash/quash
+==51630== 
+==51630== 
+==51630== HEAP SUMMARY:
+==51630==     in use at exit: 640 bytes in 1 blocks
+==51630==   total heap usage: 9 allocs, 8 frees, 18,494 bytes allocated
+==51630== 
+==51630== LEAK SUMMARY:
+==51630==    definitely lost: 0 bytes in 0 blocks
+==51630==    indirectly lost: 0 bytes in 0 blocks
+==51630==      possibly lost: 0 bytes in 0 blocks
+==51630==    still reachable: 640 bytes in 1 blocks
+==51630==         suppressed: 0 bytes in 0 blocks
+==51630== Reachable blocks (those to which a pointer was found) are not shown.
+==51630== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==51630== 
+==51630== For counts of detected and suppressed errors, rerun with: -v
+==51630== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)

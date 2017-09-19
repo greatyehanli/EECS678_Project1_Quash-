@@ -430,10 +430,10 @@ void create_process(CommandHolder holder, Job* job) {
  
       if(r_app) {
         // NOTE: might not need O_CREAT 
-        fileDescriptor = open(holder.redirect_out, O_CREAT|O_WRONLY|O_APPEND, 0644); // pass mode as read&write, or write only?
+        fileDescriptor = open(holder.redirect_out, O_CREAT|O_WRONLY|O_APPEND, 0664); // pass mode as read&write, or write only?
       }
       else {
-        fileDescriptor = open(holder.redirect_out, O_CREAT|O_WRONLY|O_TRUNC, 0644); // pass mode as read&write, or write only?
+        fileDescriptor = open(holder.redirect_out, O_CREAT|O_WRONLY|O_TRUNC, 0664); // pass mode as read&write, or write only?
       }
 
       // writing to a file and close the pipe
@@ -446,11 +446,12 @@ void create_process(CommandHolder holder, Job* job) {
   }
   // parent process
   else {
-    // close pipes 
-    close(p1[0]);
-    close(p1[1]);
+    // close(p1[0]);
+    // close(p1[1]);
 
+    push_back_PIDDeque(&job->pid_list, pid_1);
     parent_run_command(holder.cmd); 
+   
 
     // why not exit?
   }

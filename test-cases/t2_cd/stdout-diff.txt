@@ -1,2 +1,0 @@
-4a5
-> /home/h724j464/EECS678/project01/quash/test-cases/t2_cd/sandbox/dir3
