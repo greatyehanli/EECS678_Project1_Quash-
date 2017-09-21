@@ -83,7 +83,9 @@ void check_jobs_bg_status() {
   // jobs. This function should remove jobs from the jobs queue once all
   // processes belonging to a job have completed.
 
-  for(int j = 0; j < (int)length_JobDeque(&jobs); j++) {
+
+  int jobslength = (int)length_JobDeque(&jobs);
+  for(int j = 0; j < jobslength; j++) {
     
     // pop a job
     Job tempJob = pop_front_JobDeque(&jobs);
@@ -91,8 +93,11 @@ void check_jobs_bg_status() {
     // Assume job is complete    
     tempJob.isComplete = true;
 
+
+    int pidlength = (int)length_PIDDeque(&tempJob.pid_list);
+
     // Check the processes of the job to see if they're complete
-    for(int p = 0; p < (int)length_PIDDeque(&tempJob.pid_list); p++) {
+    for(int p = 0; p < pidlength; p++) {
     
       int status = 0;    
 
@@ -426,19 +431,19 @@ void create_process(CommandHolder holder, Job* job) {
 
     }
     if(r_out) {
-      int fileDescriptor;
+      int fileDescriptor2;
  
       if(r_app) {
         // NOTE: might not need O_CREAT 
-        fileDescriptor = open(holder.redirect_out, O_CREAT|O_WRONLY|O_APPEND, 0664); // pass mode as read&write, or write only?
+        fileDescriptor2 = open(holder.redirect_out, O_CREAT|O_WRONLY|O_APPEND, 0664); // pass mode as read&write, or write only?
       }
       else {
-        fileDescriptor = open(holder.redirect_out, O_CREAT|O_WRONLY|O_TRUNC, 0664); // pass mode as read&write, or write only?
+        fileDescriptor2 = open(holder.redirect_out, O_CREAT|O_WRONLY|O_TRUNC, 0664); // pass mode as read&write, or write only?
       }
 
       // writing to a file and close the pipe
-      dup2(fileDescriptor, STDOUT_FILENO);
-      close(fileDescriptor);
+      dup2(fileDescriptor2, STDOUT_FILENO);
+      close(fileDescriptor2);
     }
 
     child_run_command(holder.cmd); // This should be done in the child branch of a fork

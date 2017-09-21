@@ -1,21 +1,21 @@
-==51630== Memcheck, a memory error detector
-==51630== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
-==51630== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
-==51630== Command: /home/h724j464/EECS678/project01/quash/quash
-==51630== 
-==51630== 
-==51630== HEAP SUMMARY:
-==51630==     in use at exit: 640 bytes in 1 blocks
-==51630==   total heap usage: 9 allocs, 8 frees, 18,494 bytes allocated
-==51630== 
-==51630== LEAK SUMMARY:
-==51630==    definitely lost: 0 bytes in 0 blocks
-==51630==    indirectly lost: 0 bytes in 0 blocks
-==51630==      possibly lost: 0 bytes in 0 blocks
-==51630==    still reachable: 640 bytes in 1 blocks
-==51630==         suppressed: 0 bytes in 0 blocks
-==51630== Reachable blocks (those to which a pointer was found) are not shown.
-==51630== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==51630== 
-==51630== For counts of detected and suppressed errors, rerun with: -v
-==51630== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
+==64815== Memcheck, a memory error detector
+==64815== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==64815== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
+==64815== Command: /home/h724j464/EECS678/project01/quash/quash
+==64815== 
+==64815== 
+==64815== HEAP SUMMARY:
+==64815==     in use at exit: 640 bytes in 1 blocks
+==64815==   total heap usage: 9 allocs, 8 frees, 18,494 bytes allocated
+==64815== 
+==64815== LEAK SUMMARY:
+==64815==    definitely lost: 0 bytes in 0 blocks
+==64815==    indirectly lost: 0 bytes in 0 blocks
+==64815==      possibly lost: 0 bytes in 0 blocks
+==64815==    still reachable: 640 bytes in 1 blocks
+==64815==         suppressed: 0 bytes in 0 blocks
+==64815== Reachable blocks (those to which a pointer was found) are not shown.
+==64815== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==64815== 
+==64815== For counts of detected and suppressed errors, rerun with: -v
+==64815== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
